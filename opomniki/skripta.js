@@ -16,6 +16,15 @@ window.addEventListener('load', function() {
 			//TODO: 
 			// - če je čas enak 0, izpiši opozorilo "Opomnik!\n\nZadolžitev NAZIV_OPOMNIK je potekla!"
 			// - sicer zmanjšaj čas za 1 in nastavi novo vrednost v časovniku
+			if (cas == 0) {
+				var zad = document.getElementById("zad").innerHTML;
+				alert("Opomnik!\n\nZadolžitev "+zad+" je potekla!");
+				document.getElementById("opomniki").removeChild(opomnik);  
+			}
+			else {
+				cas = cas - 1;
+				opomnik.querySelector("span").innerHTML = cas;
+			}
 		}
 	}
 	setInterval(posodobiOpomnike, 1000);
@@ -38,7 +47,7 @@ window.addEventListener('load', function() {
 
     	div.className = 'opomnik';
 
-		div.innerHTML = '<div class="naziv_opomnika">'+zadolzitev+'</div>\
+		div.innerHTML = '<div class="naziv_opomnika" id="zad">'+zadolzitev+'</div>\
             			<div class="cas_opomnika"> Opomnik čez <span>'+cas+'</span> sekund.</div>';
 
      	document.getElementById('opomniki').appendChild(div);
