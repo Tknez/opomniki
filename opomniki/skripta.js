@@ -2,6 +2,7 @@ window.addEventListener('load', function() {
 	//stran nalozena
 		
 	document.querySelector("#prijavniGumb").addEventListener('click', izvediPrijavo);
+	document.querySelector("#dodajGumb").addEventListener('click', oddajOpomnik);
 		
 	//Posodobi opomnike
 	var posodobiOpomnike = function() {
@@ -18,12 +19,31 @@ window.addEventListener('load', function() {
 		}
 	}
 	setInterval(posodobiOpomnike, 1000);
+
+
+	function izvediPrijavo() {
+		var uporabnikIme = document.querySelector("#uporabnisko_ime").value;
+		var nodeIme = document.createTextNode(uporabnikIme);
+		document.getElementById("uporabnik").appendChild(nodeIme);
+		document.getElementsByClassName("pokrivalo")[0].style.display = 'none';
+	}
+	
+	function oddajOpomnik() {
+		var zadolzitev = document.getElementById("naziv_opomnika").value;
+		var cas = document.getElementById("cas_opomnika").value;
+		document.getElementById("naziv_opomnika").value = "";
+		document.getElementById("cas_opomnika").value = "";
+
+		var div = document.createElement('div');
+
+    	div.className = 'opomnik';
+
+		div.innerHTML = '<div class="naziv_opomnika">'+zadolzitev+'</div>\
+            			<div class="cas_opomnika"> Opomnik čez <span>'+cas+'</span> sekund.</div>';
+
+     	document.getElementById('opomniki').appendChild(div);
+		
+	}
 	
 });
 
-var izvediPrijavo = function(event) {
-	var uporabnikIme = document.querySelector("#uporabnisko_ime").value;
-	var nodeIme = document.createTextNode(uporabnikIme);
-	document.getElementById("uporabnik").appendChild(nodeIme);
-	document.getElementsByClassName("pokrivalo")[0].style.display = 'none';
-}
