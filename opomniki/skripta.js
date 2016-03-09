@@ -1,6 +1,8 @@
 window.addEventListener('load', function() {
 	//stran nalozena
 		
+	document.querySelector("#prijavniGumb").addEventListener('click', izvediPrijavo);
+		
 	//Posodobi opomnike
 	var posodobiOpomnike = function() {
 		var opomniki = document.querySelectorAll(".opomnik");
@@ -18,3 +20,10 @@ window.addEventListener('load', function() {
 	setInterval(posodobiOpomnike, 1000);
 	
 });
+
+var izvediPrijavo = function(event) {
+	var uporabnikIme = document.querySelector("#uporabnisko_ime").value;
+	var nodeIme = document.createTextNode(uporabnikIme);
+	document.getElementById("uporabnik").appendChild(nodeIme);
+	document.getElementsByClassName("pokrivalo")[0].style.display = 'none';
+}
